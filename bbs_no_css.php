@@ -2,6 +2,7 @@
   // データベースへ接続し、SQLを実行し、切断する部分を記述しましょう。
 
 
+
   // １．データベースに接続する
   $dsn = 'mysql:dbname=oneline_bbs;host=localhost';
   $user = 'root';
