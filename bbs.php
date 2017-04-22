@@ -2,7 +2,6 @@
   // データベースへ接続し、SQLを実行し、切断する部分を記述しましょう。
 
 
-
   // １．データベースに接続する
   $dsn = 'mysql:dbname=oneline_bbs;host=localhost';
   $user = 'root';
@@ -61,6 +60,8 @@
 
    // ３．データベースを切断する
    $dbh = null;
+
+
   
 
 ?>
@@ -143,7 +144,15 @@
                   </div>
                   <div class="timeline-label">
                       <h2><a href="#">seedくん</a> <span>2016-01-20</span></h2>
-                      <p>つぶやいたコメント</p>
+                      <p>つぶやいたコメント</p> 
+                      <?php
+                      foreach ($post_datas as $post_each) {
+                        echo $post_each['nickname'].'<br>';
+                        echo $post_each['comment'].'<br>';
+                        echo $post_each['created'].'<br>';
+                        echo '<hr>';}
+                        ?>
+
                   </div>
               </div>
           </article>
@@ -166,8 +175,6 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="assets/js/bootstrap.js"></script>
   <script src="assets/js/form.js"></script>
+
 </body>
 </html>
-
-
-
