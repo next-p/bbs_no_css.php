@@ -25,15 +25,15 @@
 
   // var_dump($sql);
 
-  //実行
+  //SQLを実行
   $stmt = $dbh->prepare($sql);
   $stmt->execute();
 
+}
+
   //select文の実行
   //sql文作成(select文)
-  $sql = 'SELECT * FROM `posts`;';
-
-
+  $sql = 'SELECT * FROM `posts` ORDER BY `created` DESC;';
   
 
    //実行
@@ -56,7 +56,7 @@
    }
 
 
-  }
+  
 
    // ３．データベースを切断する
    $dbh = null;
@@ -117,14 +117,14 @@
           <!-- nickname -->
           <div class="form-group">
             <div class="input-group">
-              <input type="text" name="nickname" class="form-control" id="validate-text" placeholder="nickname" required>
+              <input type="text" name="nickname" class="form-control" id="validate-text" placeholder="ニックネーム" required>
               <span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
             </div>
           </div>
           <!-- comment -->
           <div class="form-group">
             <div class="input-group" data-validate="length" data-length="4">
-              <textarea type="text" class="form-control" name="comment" id="validate-length" placeholder="comment" required></textarea>
+              <textarea type="text" class="form-control" name="comment" id="validate-length" placeholder="コメント" required></textarea>
               <span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
             </div>
           </div>
@@ -136,11 +136,9 @@
       <!-- 画面右側 -->
       <div class="col-md-8 content-margin-top">
         <div class="timeline-centered">
+        <?php foreach ($post_datas as $post_each) {?>
           <article class="timeline-entry">
-          	 <?php if (!empty($_POST)) {
-                      foreach ($post_datas as $post_each) {?>
           
-
               <div class="timeline-entry-inner">
                   <div class="timeline-icon bg-success">
                       <i class="entypo-feather"></i>
@@ -148,18 +146,26 @@
                   </div>
                   <div class="timeline-label">
                  
-                   <h2><a href="#"><?php echo $post_each['nickname'] . '<br>'; ?></a> <span><?php echo $post_each['comment'] . '<br>'; ?></span></h2>
-                      <p><?php echo $post_each['created'] . '<br>'; ?></p>
-                     
+                  <h2><a href="#"><?php echo $post_each['nickname'] . '<br>'; ?></a> <span><?php echo $post_each['comment'] . '<br>'; ?></span></h2>
+
+
+                  <?php
+                  //一旦日時型に変換(string型からDateTime型へ変換)
+                  $created = strtotime($post_each['created']);
+                  //書式を変更
+                  $created = date('Y-m-d',$created);
+
+                    ?>
+
+                     <!--<p --><?php //echo $post_each['created'] . '<br>'; ?><!--/p --> 
+                     <p><?php echo $created; ?></p>
 
                   </div>
               </div>
-
-              <!--なぜdivの外に？-->
                
-              <?php }} ?>
+              
           </article>
-
+          <?php } ?>
           <article class="timeline-entry begin">
               <div class="timeline-entry-inner">
                   <div class="timeline-icon" style="-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);">
