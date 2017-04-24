@@ -3,9 +3,14 @@
 
 
   // １．データベースに接続する
-  $dsn = 'mysql:dbname=oneline_bbs;host=localhost';
-  $user = 'root';
-  $password='';
+  // dbnameをロリポップのデータベース名に、hostをロリポップのサーバーに変更
+  $dsn = 'mysql:dbname=LAA0854017-onelinebbs;host=mysql122.phy.lolipop.lan';
+  // userをロリポップのユーザー名に変更
+  $user = 'LAA0854017';
+  // passwordをロリポップのパスワードに変更
+  $password = 'UEEUNNWY8hznJkgw';
+
+
   $dbh = new PDO($dsn, $user, $password);
   $dbh->query('SET NAMES utf8');
 
@@ -93,7 +98,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#page-top"><span class="strong-title"><i class="fa fa-linux"></i> Oneline bbs</span></a>
+              <a class="navbar-brand" href="#page-top"><span class="strong-title"><i class="fa fa-comments-o" aria-hidden="true"></i> Oneline bbs</span></a>
           </div>
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -141,12 +146,14 @@
           
               <div class="timeline-entry-inner">
                   <div class="timeline-icon bg-success">
-                      <i class="entypo-feather"></i>
-                      <i class="fa fa-cogs"></i>
+                  <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                      
                   </div>
                   <div class="timeline-label">
                  
                   <h2><a href="#"><?php echo $post_each['nickname'] . '<br>'; ?></a> <span><?php echo $post_each['comment'] . '<br>'; ?></span></h2>
+
+                  <a href="#" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-heart-empty"></span> いいね</a>
 
 
                   <?php
@@ -169,7 +176,7 @@
           <article class="timeline-entry begin">
               <div class="timeline-entry-inner">
                   <div class="timeline-icon" style="-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);">
-                      <i class="entypo-flight"></i> +
+                      <i class="fa fa-paper-plane-o" aria-hidden="true"></i> +
                   </div>
               </div>
           </article>
